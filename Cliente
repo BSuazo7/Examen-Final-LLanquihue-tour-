@@ -1,0 +1,21 @@
+package model;
+
+public class Cliente extends Persona {
+    private String tipoCliente; // ej: Turista, Corporativo
+
+    public Cliente(String nombre, String rut, Direccion direccion, String tipoCliente) {
+        super(nombre, rut, direccion);
+        this.tipoCliente = tipoCliente;
+    }
+
+    @Override
+    public void mostrarDatos() {
+        System.out.println("[CLIENTE " + tipoCliente + "] " + super.toString());
+    }
+    
+    // Sobrecarga de método (Requisito)
+    public void mostrarDatos(String mensajeExtra) {
+        System.out.println(mensajeExtra);
+        this.mostrarDatos();
+    }
+}
