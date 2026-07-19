@@ -1,0 +1,38 @@
+package app;
+
+import data.GestorDatos;
+import model.*;
+import utils.ArchivoUtil;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("=== SISTEMA LLANQUIHUE TOUR - EXAMEN FINAL ===");
+        
+        GestorDatos gestor = new GestorDatos();
+
+        /* 1. Carga de datos desde archivo (Uso de colecciones y archivos) */
+        ArrayList<Cliente> clientesArchivo = ArchivoUtil.cargarClientesDesdeArchivo("data_files/clientes.txt");
+        for (Cliente c : clientesArchivo) {
+            gestor.agregarEntidad(c);
+        }
+        
+        // 2. Creación manual de objetos (Herencia y Composición)
+        Direccion dirEmp = new Direccion("Av. Principal 500", "Puerto Montt");
+        Empleado emp1 = new Empleado("Ana Jara", "11.222.333-4", dirEmp, "Guía Turístico");
+        gestor.agregarEntidad(emp1);
+        
+        Producto prod1 = new Producto("Tour Lago Llanquihue", 25000);
+        gestor.agregarEntidad(prod1);
+        
+        // 3. Demostración de Polimorfismo e instanceof
+        gestor.mostrarTodoPolimorfico();
+        
+        // 4. Demostración de Sobrecarga
+        System.out.println("\n--- PRUEBA DE SOBRECARGA ---");
+        Cliente cPrueba = new Cliente("Test", "0-0", new Direccion("X", "Y"), "Prueba");
+        cPrueba.mostrarDatos("Imprimiendo datos con mensaje personalizado:");
+        
+        System.out.println("\n=== FIN DEL PROGRAMA ===");
+    }
+}
