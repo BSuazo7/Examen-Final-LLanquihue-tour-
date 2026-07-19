@@ -1,0 +1,33 @@
+package data;
+
+import model.Registrable;
+import model.Cliente;
+import model.Empleado;
+import java.util.ArrayList;
+
+public class GestorDatos {
+    private final ArrayList<Registrable> listaEntidades;
+
+    public GestorDatos() {
+        this.listaEntidades = new ArrayList<>();
+    }
+
+    public void agregarEntidad(Registrable r) {
+        listaEntidades.add(r);
+    }
+
+    public void mostrarTodoPolimorfico() {
+        System.out.println("\n--- LISTADO GENERAL DE ENTIDADES ---");
+        for (Registrable r : listaEntidades) {
+            // Llamada polimórfica
+            r.mostrarDatos();
+            
+            // Uso de instanceof para validación de tipo
+            if (r instanceof Cliente) {
+                System.out.println("   (Validado: Es un Cliente de la agencia)");
+            } else if (r instanceof Empleado) {
+                System.out.println("   (Validado: Es personal interno)");
+            }
+        }
+    }
+}
